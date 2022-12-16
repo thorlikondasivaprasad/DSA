@@ -1,0 +1,81 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int size=10;
+
+struct hash
+{
+    int data;
+    struct hash *next;
+};
+
+struct hash *chain[10];
+
+void createarray()
+{
+    int i;
+    for(i = 0; i < size; i++)
+        chain[i] = NULL;
+}
+
+void insert(int value)
+{
+   
+    struct hash *newNode = malloc(sizeof(struct hash));
+    newNode->data = value;
+    newNode->next = NULL;
+
+    int key = value % size;
+
+    if(chain[key] == NULL)
+        chain[key] = newNode;
+
+    else
+    {
+       
+        struct hash *temp = chain[key];
+        while(temp->next)
+        {
+            temp = temp->next;
+        }
+
+        temp->next = newNode;
+    }
+}
+
+void print()
+{
+    int i;
+
+    for(i = 0; i < size; i++)
+    {
+        struct hash *temp = chain[i];
+        printf("chain[%d]-->",i);
+        
+        while(temp)
+        {
+            printf("%d -->",temp->data);
+            temp = temp->next;
+        }
+        printf("NULL\n");
+    }
+}
+
+int main()
+{
+
+    createarray();
+    printf("enter number of elements to insert in the hash table");
+    int n;
+    scanf("%d",&n);
+    printf("enter elements into the array");
+    int a;
+
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&a);
+        insert(a);
+    }
+    print();
+}
