@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct cllnode
+{
+	int val;
+	struct cllnode *next;
+};
+struct cllnode *createnode(int v)
+{
+	struct cllnode *h;
+	h=(struct cllnode*)malloc(sizeof(struct cllnode));
+	h->val=v;
+	h->next=NULL;
+	return h;
+}
+struct cllnode *createlist(int n)
+{
+	struct cllnode *h,*tail=NULL,*nn;
+	int v;
+	if(n<1)
+	{
+		return NULL;
+	}
+	for(int i=0;i<n;i++)
+	{
+		printf("Enter the node:");
+		scanf("%d",&v);
+	nn=createnode(v);
+	if(tail==NULL)
+	{
+		nn->next=nn;
+		tail=nn;
+	}
+	else
+	{
+		nn->next=tail->next;
+		tail->next=nn;
+		tail=nn;
+}
+}
+return tail;
+}
+int printlist(struct cllnode *h)
+{
+	struct cllnode *l;
+	if(h==NULL)
+	{
+	return NULL;
+	}
+	l=h->next;
+	while(h!=l)
+	{
+		printf("%d=>",l->val);
+		l=l->next;
+	}
+	printf("%d",l->val);
+}
+int main()
+{
+	struct cllnode *h;
+	h=createlist(5);
+	printlist(h);
+}
