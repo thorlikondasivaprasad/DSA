@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct dllnode
+{
+	int val;
+	struct dllnode *prev,*next;
+};
+struct dllnode *h;
+struct dllnode *createnode(int v)
+{
+	struct dllnode *h;
+	h=(struct dllnode *)malloc(sizeof(struct dllnode));
+	h->prev=NULL;
+	h->val=v;
+	h->next=NULL;
+	return h;
+}
+struct dllnode *createlist(int n)
+{
+	struct dllnode *head=NULL,*tail,*nn;
+	int i,v;
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&v);
+		nn=createnode(v);
+		if(h==NULL)
+		{
+			h=nn;
+		}
+		else
+		{
+			tail->next=nn;
+			nn->prev=tail;
+		}
+		tail=nn;
+	}
+	return h;
+}
+void printlist(struct dllnode *h)
+{
+	while(h!=NULL)
+	{
+		printf("%d=>",h->val);
+		h=h->next;
+	}
+}
+int main()
+{
+	struct dllnode *h;
+	int x;
+	printf("Enter DLLlist value");
+	scanf("%d",&x);
+	h=createlist(x);
+	printlist(h);
+}
