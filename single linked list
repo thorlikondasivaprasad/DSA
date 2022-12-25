@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+	int data;
+	struct node *link;
+};
+struct node *h;
+struct node *createnode(int v)
+{
+	//struct node *h;
+	h=(struct node*)malloc(sizeof(struct node));
+	h->data=v;
+	h->link=NULL;
+	return h;
+}
+struct node *createlist(int n)
+{
+	struct node *head=NULL,*tail,*newn;
+	int v,i;
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&v);
+	newn=createnode(v);
+	if(head==NULL)
+	{
+		head=newn;
+	}
+	else
+		tail->link=newn;
+	tail=newn;
+}
+	return head;
+}
+void printlist(struct node *h)
+{
+	while(h!=NULL)
+	{
+		printf("%d=>",h->data);
+		h=h->link;
+	}
+}
+
+int main()
+{
+	//struct node *h;
+	h=createlist(5);
+	printlist(h);
+}
