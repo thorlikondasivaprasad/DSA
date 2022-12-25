@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<stdlib.h>
+int insertionsort(int a[],int n);
+int main()
+{
+	int n,i,j,a[n];
+	printf("Enter array size:");
+	scanf("%d",&n);
+	printf("Enter array numbers:");
+	for (i=0;i<n;i++)
+	{
+		scanf("%d",&a[i]);
+	}
+	printf("Array elements are:");
+	for(i=0;i<n;i++)
+	{
+	printf("%d\t",a[i]);
+    }
+    insertionsort(a,n);
+}
+int insertionsort(int a[],int n)
+{
+	int i,j;
+	int ele;
+	for(i=1;i<n;i++)
+	{
+		ele=a[i];
+		j=i-1;
+		while(j>=0 && ele<a[j])
+		{
+		a[j+1]=a[j];
+		j--	;
+		}
+		a[j+1]=ele;	
+	}
+	printf("Elements after sorting:");
+	for(i=0;i<n;i++)
+	{
+		printf("%d  ",a[i]);
+	}
+}
